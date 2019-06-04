@@ -64,7 +64,7 @@ const config  = require('../config');
     app.use((req, res, next) => {
         const err = new Error('Route Not Found') 
         err.status = 404;
-        err.customCode = 'RNF_01';
+        err.code = 'RNF_01';
         err.field = 'api path'
         next(err);
     });
@@ -77,6 +77,7 @@ const config  = require('../config');
         if (err.name === 'UnauthorizedError') {
             return res.status(err.status).send({
                 "error": {
+                    name: "UnauthorizedError",
                     status: 401,
                     code: "AUT_02",
                     message: err.message,
@@ -90,8 +91,9 @@ const config  = require('../config');
         res.status(err.status || 500);
         res.json({
             "error": {
+                name: err.name,
                 status: err.status,
-                code: err.customCode,
+                code: err.code,
                 message: err.message,
                 field: err.field
             }

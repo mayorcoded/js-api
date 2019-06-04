@@ -4,7 +4,11 @@ const mysqlLoader = require('./database');
 const jobLoader = require('./jobs');
 const dependencyInjector = require('./dependencyInjector');
 const welcomeService = require('../services/welcome');
+const customerService = require('../services/customers.service');
 const logger = require('../utils/winston');
+
+//load models
+require('../models/customers.model');
 
 module.exports = async (expressApp) => {
     const mysqlConnection = await mysqlLoader();
@@ -15,6 +19,7 @@ module.exports = async (expressApp) => {
      */
     const dependencies = [
         { name: 'welcome', service: new welcomeService() },
+        { name: 'customerService', service: new customerService() },
         { name: 'mysql', service: mysqlConnection },
         { name: 'logger', service: logger }
     ]

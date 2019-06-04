@@ -20,6 +20,9 @@ async function startServer() {
         console.log(' 🛡️  Server listening on port: ', config.port, ' 🛡️ ')
         console.log('################################################')
     })
+
+    return app;
 }
 
 startServer();
+

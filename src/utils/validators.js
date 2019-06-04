@@ -1,8 +1,55 @@
 "use strict";
 
-const { check } = require("express-validator/check");
+//const { check } = require("./node_modules/express-validator/check");
+const {check} = require("express-validator/check")
 
-export const validateNewCustomer = [
+const validateNewCustomer = [
+check("email")
+  .not()
+  .isEmpty()
+  .exists()
+  .withMessage("Email must be provided")
+  .isEmail()
+  .withMessage("email format is invalid")
+  .trim()
+  .normalizeEmail(),
+
+check("name")
+  .not()
+  .isEmpty()
+  .withMessage("Name cannot be empty")
+  .trim()
+  .escape(),
+
+check(
+  "password",
+  "passwords must be at least 3 chars long and contain one number"
+).exists()
+  .not()
+  .isEmpty()
+  .isLength({ min: 3 })
+  .matches(/\d/)
+];
+
+const validateFacebookLogin = [
+  check("access_token")
+  .not()
+  .isEmpty()
+  .withMessage("access token cannot be empty")
+  .trim()
+  .escape()
+]
+
+const validateUpdateCustomerCreditCard = [
+  check("credit_card")
+  .not()
+  .isEmpty()
+  .withMessage("credit card cannot be empty")
+  .trim()
+  .escape(),
+]
+
+const validateUpdateCustomer = [
   check("email")
     .not()
     .isEmpty()
@@ -19,19 +66,49 @@ export const validateNewCustomer = [
     .withMessage("Name cannot be empty")
     .trim()
     .escape(),
-
-  check(
-    "password",
-    "passwords must be at least 3 chars long and contain one number"
-  )
-    .exists()
-    .not()
-    .isEmpty()
-    .isLength({ min: 3 })
-    .matches(/\d/)
 ];
 
-export const validateUpdateProfile = [
+const validateUpdateCustomerAddress = [
+  check("address_1")
+    .not()
+    .isEmpty()
+    .withMessage("Please provide an address")
+    .toString(),
+
+  check("city")
+    .not()
+    .isEmpty()
+    .withMessage("Please provide a city")
+    .toString(),
+
+  check("region")
+    .not()
+    .isEmpty()
+    .withMessage("Please provide a region")
+    .toString(),
+
+  check("postal_code")
+    .not()
+    .isEmpty()
+    .withMessage("Please provide a postal code")
+    .isNumeric()
+    .withMessage("Postal code must be a number"),
+
+  check("country")
+    .not()
+    .isEmpty()
+    .withMessage("Please provide a country")
+    .toString(),
+
+  check("shipping_region_id")
+    .not()
+    .isEmpty()
+    .withMessage("Please provide a shipping region")
+    .isNumeric()
+    .withMessage("Shipping region ID must be numeric"),
+];
+
+ const validateUpdateProfile = [
   check("address_1")
     .not()
     .isEmpty()
@@ -78,7 +155,7 @@ export const validateUpdateProfile = [
     .withMessage("Phone number should be numeric")
 ];
 
-export const validateNewDepartment = [
+ const validateNewDepartment = [
   check("name")
     .not()
     .isEmpty()
@@ -87,7 +164,7 @@ export const validateNewDepartment = [
     .escape()
 ];
 
-export const validateNewAttribute = [
+ const validateNewAttribute = [
   check("name")
     .not()
     .isEmpty()
@@ -96,7 +173,7 @@ export const validateNewAttribute = [
     .escape()
 ];
 
-export const validateNewProduct = [
+ const validateNewProduct = [
   check("name")
     .not()
     .isEmpty()
@@ -120,7 +197,7 @@ export const validateNewProduct = [
     .withMessage("Display must be an Integer")
 ];
 
-export const validateNewOrder = [
+ const validateNewOrder = [
   check("total_amount")
     .not()
     .isEmpty()
@@ -134,7 +211,7 @@ export const validateNewOrder = [
     .withMessage("Shipping ID should be numeric")
 ];
 
-export const validateNewShippingRegion = [
+ const validateNewShippingRegion = [
   check("shipping_region")
     .isAlphanumeric()
     .withMessage(
@@ -142,7 +219,7 @@ export const validateNewShippingRegion = [
     )
 ];
 
-export const validateLogin = [
+ const validateLogin = [
   check("email")
     .isEmail()
     .withMessage("Email is not valid")
@@ -155,7 +232,7 @@ export const validateLogin = [
     .withMessage("Password must be at least 3 characters long")
 ];
 
-export const validateSearchTerm = [
+ const validateSearchTerm = [
   check("search_term")
     .toString()
     .not()
@@ -163,7 +240,7 @@ export const validateSearchTerm = [
     .withMessage("Search term must be provided")
 ];
 
-export const validateGetProductItem = [
+ const validateGetProductItem = [
   check("id")
     .isNumeric()
     .withMessage("Product item must be an integer")
@@ -172,7 +249,7 @@ export const validateGetProductItem = [
     .withMessage("Product item is required")
 ];
 
-export const validateNewItem = [
+ const validateNewItem = [
   check("cart_id")
     .isNumeric()
     .withMessage("Cart ID must be an integer")
@@ -209,7 +286,7 @@ export const validateNewItem = [
     .withMessage("`Buy now` field is required")
 ];
 
-export const validateNewPayment = [
+const validateNewPayment = [
   check("amount")
     .not()
     .isEmpty()
@@ -229,7 +306,7 @@ export const validateNewPayment = [
     .withMessage("Order ID should be numeric")
 ];
 
-export const validateEditProduct = [
+const validateEditProduct = [
   check("name")
     .isString()
     .withMessage("Name must be a string"),
@@ -247,7 +324,7 @@ export const validateEditProduct = [
     .withMessage("Discounted price must be an integer")
 ];
 
-export const validateEditDepartment = [
+ const validateEditDepartment = [
   check("name")
     .isString()
     .withMessage("Name must be a string"),
@@ -257,20 +334,20 @@ export const validateEditDepartment = [
     .withMessage("Descrition must be a string")
 ];
 
-export const validateEditAttribute = [
+ const validateEditAttribute = [
   check("name")
     .isString()
     .withMessage("Name must be a string")
 ];
 
-export const validateDeleteDepartment = [
+ const validateDeleteDepartment = [
   check("department_id")
   .isNumeric()
   .withMessage("Product department ID must be an integer")
 ];
 
 
-export const validateProductAttributes = [
+ const validateProductAttributes = [
   check("attribute_id")
   .isNumeric()
   .withMessage("Attribute ID must be an integer"),
@@ -280,13 +357,13 @@ export const validateProductAttributes = [
   .withMessage("Product ID must be an integer")
 ];
 
-export const validateDeleteAttribute = [
+ const validateDeleteAttribute = [
   check("attribute_id")
   .isNumeric()
   .withMessage("Attribute ID must be an integer")
 ];
 
-export const validateEditCategory = [
+ const validateEditCategory = [
   check("name")
     .isString()
     .withMessage("Name must be a string"),
@@ -300,25 +377,25 @@ export const validateEditCategory = [
     .withMessage("Department ID must be an integer")
 ];
 
-export const validateDeleteProduct = [
+ const validateDeleteProduct = [
   check("product_id")
   .isNumeric()
   .withMessage("Product ID must be an integer")
 ];
 
-export const validateCancelOrder = [
+ const validateCancelOrder = [
   check("order_id")
   .isNumeric()
   .withMessage("Order ID must be an integer")
 ];
 
-export const validateDeleteCategory = [
+ const validateDeleteCategory = [
   check("category_id")
   .isNumeric()
   .withMessage("Category ID must be an integer")
 ];
 
-export const validateAddCategory = [
+ const validateAddCategory = [
   check("name")
   .isString()
   .withMessage("Name must be a string"),
@@ -332,9 +409,40 @@ export const validateAddCategory = [
   .withMessage("Department ID must be an integer")
 ];
 
-// export const validateStatus = [
+//  const validateStatus = [
 //   check('status')
 //     .isString().withMessage('Status must be alphabetical characters.')
 //     .isLength({ min: 4, max: 20 })
 //     .withMessage('Status must be at least 5 characters long and not more than 20'),
 // ];
+
+
+module.exports = {
+  validateFacebookLogin,
+  validateNewCustomer,
+  validateAddCategory,
+  validateCancelOrder,
+  validateDeleteAttribute,
+  validateDeleteCategory,
+  validateDeleteDepartment,
+  validateDeleteProduct,
+  validateEditAttribute,
+  validateEditCategory,
+  validateEditDepartment,
+  validateEditProduct,
+  validateGetProductItem,
+  validateLogin,
+  validateNewAttribute,
+  validateNewDepartment,
+  validateNewItem,
+  validateNewOrder,
+  validateNewPayment,
+  validateNewProduct,
+  validateNewShippingRegion,
+  validateProductAttributes,
+  validateSearchTerm,
+  validateUpdateProfile,
+  validateUpdateCustomer,
+  validateUpdateCustomerAddress,
+  validateUpdateCustomerCreditCard
+}
