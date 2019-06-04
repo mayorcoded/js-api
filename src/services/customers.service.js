@@ -147,6 +147,10 @@ class CustomerService {
     }
 
     [maskCreditCardNumber](creditCardNumber){
+        if(!creditCardNumber){
+            return creditCardNumber;
+        }
+
         return (creditCardNumber.length <= 4)? creditCardNumber: creditCardNumber.slice(0, -4).replace(/./g, 'X') + creditCardNumber.slice(-4);
     }
 }

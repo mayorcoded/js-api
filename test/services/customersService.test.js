@@ -237,7 +237,7 @@ describe('customer service', () => {
                 name: 'some updated name'
             }
 
-            const response = await  request.put('/api/customer').send(customerUpdate).set('USER-KEY', apiAccessToken).set('Accept', 'application/json')
+            const response = await  request.put('/api/customer').send(customerUpdate).set('USER-KEY', apiAccessToken).set('Accept', 'application/json');            
             expect(response.status).to.equal(200);
             expect(response.body).to.not.be.empty;
         })
