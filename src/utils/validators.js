@@ -232,8 +232,8 @@ const validateUpdateCustomerAddress = [
     .withMessage("Password must be at least 3 characters long")
 ];
 
- const validateSearchTerm = [
-  check("search_term")
+ const validateQueryString = [
+  check("query_string")
     .toString()
     .not()
     .isEmpty()
@@ -409,6 +409,22 @@ const validateEditProduct = [
   .withMessage("Department ID must be an integer")
 ];
 
+const validateProductReview = [
+  check("review")
+  .isString()
+  .withMessage("review should be string")
+  .not()
+  .isEmpty()
+  .withMessage("review cannot be empty"),
+
+  check("review")
+  .isNumeric()
+  .withMessage("review should be a number")
+  .not()
+  .isEmpty()
+  .withMessage("review cannot be empty")
+]
+
 //  const validateStatus = [
 //   check('status')
 //     .isString().withMessage('Status must be alphabetical characters.')
@@ -440,9 +456,10 @@ module.exports = {
   validateNewProduct,
   validateNewShippingRegion,
   validateProductAttributes,
-  validateSearchTerm,
+  validateQueryString,
   validateUpdateProfile,
   validateUpdateCustomer,
   validateUpdateCustomerAddress,
-  validateUpdateCustomerCreditCard
+  validateUpdateCustomerCreditCard,
+  validateProductReview
 }
