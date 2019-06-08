@@ -1,7 +1,5 @@
 'use strict';
-
 const { Container } =  require('typedi');
-const { CustomError } = require('../utils/errorHelpers');
 
 const paginate = Symbol('paginate');
 

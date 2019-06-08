@@ -1,18 +1,11 @@
-/**
- * Cache.js
- * This is the cache configuration file
- */
-
 "use strict";
+const { Container } =  require('typedi');
 
-const flatCache = require("flat-cache");
-const path = require("path");
-
-let cache = flatCache.load("cache", path.resolve("./cache"));
-
-let flatCacheMiddleware = (req, res, next) => {
+let cacheMiddleware = (req, res, next) => {
+  const cache = Container.get('cache'); 
   let key = "__express__" + req.originalUrl || req.url;
   let cacheContent = cache.getKey(key);
+
   if (cacheContent) {
     res.send(cacheContent);
   } else {
@@ -26,4 +19,4 @@ let flatCacheMiddleware = (req, res, next) => {
   }
 };
 
-module.exports = flatCacheMiddleware;
+module.exports = cacheMiddleware;

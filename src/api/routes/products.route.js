@@ -7,7 +7,7 @@ const { validationResult } = require("express-validator/check");
 const { Container } =  require('typedi');
 const { verifyToken } = require('../../api/middlewares');
 
-const cache = require('../../utils/cache');
+const cache = require('../middlewares/cache');
 const route = Router();
 
 module.exports = async(app) => {

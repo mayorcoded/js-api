@@ -251,8 +251,8 @@ const validateUpdateCustomerAddress = [
 
  const validateNewItem = [
   check("cart_id")
-    .isNumeric()
-    .withMessage("Cart ID must be an integer")
+    .isString()
+    .withMessage("Cart ID must be an string")
     .not()
     .isEmpty()
     .withMessage("Cart ID cannot be empty"),
@@ -269,21 +269,16 @@ const validateUpdateCustomerAddress = [
     .withMessage("Attributes should be string")
     .not()
     .isEmpty()
-    .withMessage("Attribute cannot be empty"),
+    .withMessage("Attribute cannot be empty")
+];
 
+const validateUpdateCartItem = [
   check("quantity")
-    .isNumeric()
-    .withMessage("Quantity must be an integer")
-    .not()
-    .isEmpty()
-    .withMessage("Quantity cannot be empty"),
-
-  check("buy_now")
-    .isNumeric()
-    .withMessage("`Buy now` must be an integer")
-    .not()
-    .isEmpty()
-    .withMessage("`Buy now` field is required")
+  .isInt()
+  .withMessage("Cart ID must be an integer")
+  .not()
+  .isEmpty()
+  .withMessage("Cart ID cannot be empty"),
 ];
 
 const validateNewPayment = [
@@ -461,5 +456,6 @@ module.exports = {
   validateUpdateCustomer,
   validateUpdateCustomerAddress,
   validateUpdateCustomerCreditCard,
-  validateProductReview
+  validateProductReview,
+  validateUpdateCartItem
 }
