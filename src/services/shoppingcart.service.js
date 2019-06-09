@@ -1,7 +1,6 @@
 'use strict';
 const uuid = require('uuid/v4');
 const { Container } =  require('typedi');
-const { CustomError } = require('../utils/errorHelpers');
 
 class ShoppingCartService {
 

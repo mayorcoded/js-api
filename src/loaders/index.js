@@ -7,6 +7,7 @@ const welcomeService = require('../services/welcome');
 const customerService = require('../services/customers.service');
 const productService = require('../services/products.service');
 const shoppingcartService = require('../services/shoppingcart.service');
+const taxService = require('../services/tax.service');
 const logger = require('../utils/winston');
 const flatCache = require("flat-cache");
 const path = require("path");
@@ -15,6 +16,7 @@ const path = require("path");
 require('../models/customers.model');
 require('../models/products.model');
 require('../models/shoppingcart.model');
+require('../models/tax.model');
 
 module.exports = async (expressApp) => {
      /**
@@ -36,10 +38,11 @@ module.exports = async (expressApp) => {
         { name: 'welcome', service: new welcomeService() },
         { name: 'customerService', service: new customerService() },
         { name: 'productService', service: new productService() },
-        { name: 'shoppingcartService', service: new shoppingcartService()},
+        { name: 'shoppingcartService', service: new shoppingcartService() },
+        { name: 'taxService', service: new taxService() },
         { name: 'mysql', service: mysqlConnection },
         { name: 'logger', service: logger },
-        { name: 'cache', service: cache}
+        { name: 'cache', service: cache }
     ]
     await dependencyInjector(dependencies);
     console.log('✌️ Dependency Injector loaded');
