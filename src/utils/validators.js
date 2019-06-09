@@ -198,17 +198,23 @@ const validateUpdateCustomerAddress = [
 ];
 
  const validateNewOrder = [
-  check("total_amount")
+  check("tax_id")
     .not()
     .isEmpty()
     .isNumeric()
-    .withMessage("Total amount should be numeric"),
+    .withMessage("tax id should be numeric"),
 
     check("shipping_id")
     .not()
     .isEmpty()
     .isNumeric()
-    .withMessage("Shipping ID should be numeric")
+    .withMessage("Shipping ID should be numeric"),
+
+    check("cart_id")
+    .not()
+    .isEmpty()
+    .isNumeric()
+    .withMessage("Cart Id should be numeric")
 ];
 
  const validateNewShippingRegion = [
