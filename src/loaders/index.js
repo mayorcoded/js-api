@@ -10,6 +10,7 @@ const shoppingcartService = require('../services/shoppingcart.service');
 const shippingService = require('../services/shipping.service');
 const taxService = require('../services/tax.service');
 const departmentService = require('../services/deparments.service');
+const categoryService = require('../services/categories.service');
 const logger = require('../utils/winston');
 const flatCache = require("flat-cache");
 const path = require("path");
@@ -21,6 +22,7 @@ require('../models/shoppingcart.model');
 require('../models/tax.model');
 require('../models/shipping.model');
 require('../models/departments.model');
+require('../models/categories.model');
 
 module.exports = async (expressApp) => {
      /**
@@ -46,6 +48,7 @@ module.exports = async (expressApp) => {
         { name: 'taxService', service: new taxService() },
         { name: 'shippingService', service: new shippingService()},
         { name: 'departmentService', service: new departmentService()},
+        { name: 'categoryService', service: new categoryService()},
         { name: 'mysql', service: mysqlConnection },
         { name: 'logger', service: logger },
         { name: 'cache', service: cache }
