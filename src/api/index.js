@@ -5,6 +5,7 @@ const productsRoute = require('./routes/products.route');
 const shoppingcartRoute = require('./routes/shoppingcart.route');
 const taxRoute = require('./routes/tax.route');
 const shippingRoute = require('./routes/shipping.route');
+const departmentsRoute = require('./routes/departments.route');
 
 const app = Router();
 welcome(app);
@@ -13,5 +14,6 @@ productsRoute(app);
 shoppingcartRoute(app);
 shippingRoute(app);
 taxRoute(app);
+departmentsRoute(app);
 
 module.exports = app;
