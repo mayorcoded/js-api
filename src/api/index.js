@@ -7,6 +7,7 @@ const taxRoute = require('./routes/tax.route');
 const shippingRoute = require('./routes/shipping.route');
 const departmentsRoute = require('./routes/departments.route');
 const categroryRoute = require('./routes/categories.route');
+const attributeRoute = require('./routes/attributes.routes');
 
 const app = Router();
 welcome(app);
@@ -17,5 +18,6 @@ shippingRoute(app);
 taxRoute(app);
 departmentsRoute(app);
 categroryRoute(app);
+attributeRoute(app);
 
 module.exports = app;
