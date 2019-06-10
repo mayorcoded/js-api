@@ -211,10 +211,11 @@ const validateUpdateCustomerAddress = [
     .withMessage("Shipping ID should be numeric"),
 
     check("cart_id")
+    .isString()
+    .withMessage("Cart ID must be a string")
     .not()
     .isEmpty()
-    .isNumeric()
-    .withMessage("Cart Id should be numeric")
+    .withMessage("Cart ID cannot be empty")
 ];
 
  const validateNewShippingRegion = [
@@ -258,7 +259,7 @@ const validateUpdateCustomerAddress = [
  const validateNewItem = [
   check("cart_id")
     .isString()
-    .withMessage("Cart ID must be an string")
+    .withMessage("Cart ID must be a string")
     .not()
     .isEmpty()
     .withMessage("Cart ID cannot be empty"),
