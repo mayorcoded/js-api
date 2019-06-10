@@ -9,6 +9,7 @@ const departmentsRoute = require('./routes/departments.route');
 const categroryRoute = require('./routes/categories.route');
 const attributeRoute = require('./routes/attributes.routes');
 const ordersRoute = require('./routes/orders.route');
+const paymentsRoute = require('./routes/payments.routes');
 
 const app = Router();
 welcome(app);
@@ -21,5 +22,6 @@ departmentsRoute(app);
 categroryRoute(app);
 attributeRoute(app);
 ordersRoute(app);
+paymentsRoute(app);
 
 module.exports = app;

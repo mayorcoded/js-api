@@ -13,6 +13,7 @@ const departmentService = require('../services/deparments.service');
 const categoryService = require('../services/categories.service');
 const attributeService = require('../services/attributes.service');
 const orderService = require('../services/orders.service');
+const paymentService = require('../services/payments.service');
 const logger = require('../utils/winston');
 const flatCache = require("flat-cache");
 const path = require("path");
@@ -27,6 +28,7 @@ require('../models/departments.model');
 require('../models/categories.model');
 require('../models/attributes.model');
 require('../models/orders.model');
+require('../models/payments.model');
 
 module.exports = async (expressApp) => {
      /**
@@ -55,6 +57,7 @@ module.exports = async (expressApp) => {
         { name: 'categoryService', service: new categoryService() },
         { name: 'attributeService', service: new attributeService() },
         { name: 'orderService', service: new orderService()},
+        { name: 'paymentService', service: new paymentService()},
         { name: 'mysql', service: mysqlConnection },
         { name: 'logger', service: logger },
         { name: 'cache', service: cache }

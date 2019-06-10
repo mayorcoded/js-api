@@ -289,23 +289,33 @@ const validateUpdateCartItem = [
 ];
 
 const validateNewPayment = [
-  check("amount")
+    check("amount")
     .not()
     .isEmpty()
-    .withMessage("Please enter your stripe token")
+    .withMessage("Please enter amount")
     .isNumeric()
     .withMessage("Amount should be numeric"),
 
-  // check("currency")
-  //   .isCurrency()
-  //   .withMessage("Should be a currency"),
-
-  check("order_id")
+    check("order_id")
     .not()
     .isEmpty()
     .withMessage("Please enter an order ID")
     .isNumeric()
-    .withMessage("Order ID should be numeric")
+    .withMessage("Order ID should be numeric"),
+
+    check("stripeToken")
+    .not()
+    .isEmpty()
+    .withMessage("please add strip token")
+    .isString()
+    .withMessage("stripe token should be string"),
+
+    check("description")
+    .not()
+    .isEmpty()
+    .withMessage("please add description")
+    .isString()
+    .withMessage("description should be string"),
 ];
 
 const validateEditProduct = [

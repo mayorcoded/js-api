@@ -73,5 +73,12 @@ module.exports = {
     client_id: process.env.FACEBOOK_CLIENT_ID,
     client_secret: process.env.FACEBOOK_CLIENT_SECRET,
     access_token: process.env.FACEBOOK_ACCESS_TOKEN,
-  }
+  },
+
+  /**
+   * Stripe Credentials
+   */
+  stripe: {
+    api_key: process.env.STRIPE_API_KEY
+  },
 }
