@@ -44,7 +44,11 @@ class OrdersModel{
     async getOrderDetails(order_id){
         try {
             const sql = Container.get('mysql'); 
-            const row = sql.query(`SELECT * FROM order_detail WHERE order_id = ?`, [order_id]);
+            const row = sql.query(`SELECT 
+                                        order_id, product_id,attributes,product_name,quantity, unit_cost,
+                                        (quantity * unit_cost)  as sub_total
+                                   FROM order_detail 
+                                   WHERE order_id = ?`, [order_id]);
             return row;
         } catch (error) {
             throw new CustomError({
@@ -81,7 +85,7 @@ class OrdersModel{
                                           orders.created_on, 
                                           orders.shipped_on, 
                                           orders.status, 
-                                          order_detail.product_name
+                                          order_detail.product_name as name
                                     FROM orders 
                                     JOIN order_detail
                                     ON( orders.order_id = order_detail.order_id)
