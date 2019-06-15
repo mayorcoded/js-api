@@ -16,6 +16,21 @@ class PaymentService {
             });
             
             await paymentsModel.addPayments(amount,currency,order_id,customer_id);
+
+            const customerService = Container.get('customerService');
+            const customer = await customerService.getCustomer(customer_id);
+
+            const paymentEvents = Container.get('paymentEvents');
+            paymentEvents.emit('payment_completed',{ 
+                email: customer.email, 
+                name: customer.name, 
+                paymentInfo: {
+                    amount: amount,
+                    currency: currency,
+                    orderId: order_id
+                }
+            });
+
             return payments;
         } catch (error) {
             throw error;

@@ -3,7 +3,7 @@ const { Container } =  require('typedi');
 
 
 class AttributesService{
-
+    
     async getAttributes(){
         try {
             const attributesModel = Container.get('AttributesModel');

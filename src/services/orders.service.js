@@ -18,6 +18,13 @@ class OrderService {
             });
 
             const result = await ordersModel.insertOrderDetails(orderDetails);
+
+            const customerService = Container.get('customerService');
+            const customer = await customerService.getCustomer(customerId);
+            
+            const orderEvents = Container.get('orderEvents');
+            orderEvents.emit('order_created',{ email: customer.email, name: customer.name, orderId: orderId});
+
             return {
                 orderId: orderId
             };

@@ -29,6 +29,9 @@ class CustomerService {
             customer = await customerModel.getCustomer('email', data.email);
             const token = createToken({ id: customer[0].customer_id, email: customer[0].email });
 
+            const customerEvents = Container.get('customerEvents');
+            customerEvents.emit('customer_register',{ email: customer[0].email, name: customer[0].name });
+
             const response = {
                 customer: {
                     schema: customer[0]

@@ -76,9 +76,22 @@ module.exports = {
   },
 
   /**
+   * Redis Cedentials 
+   */
+  redis: {
+    url: process.env.REDIS_URL
+  },
+  /**
    * Stripe Credentials
    */
   stripe: {
     api_key: process.env.STRIPE_API_KEY
   },
+
+  /**
+   * Sendgrip Credentails
+   */
+  sendgrid: {
+    api_key: process.env.SENDGRID_API_KEY
+  }
 }

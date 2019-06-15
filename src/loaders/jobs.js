@@ -1,11 +1,5 @@
-var Container = require("typedi").Container;
+'use strict';
 
-class SomeClass {
-    someMethod() {
-        console.log('Hi, My name is Mayowa');
-    }
-}
-
-Container.set("some-class", new SomeClass());
-
-module.exports = SomeClass;
+module.exports = async() => {
+    //require('../jobs/emailWorker')();
+};
