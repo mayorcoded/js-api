@@ -20,7 +20,7 @@ yarn start
 ```
 5. You can test the endpoints by checking out this documentation: https://documenter.getpostman.com/view/3567325/S1Zw8AzK?version=latest
 
-6. Checkout the live api here: ??
+6. Checkout the live api here: https://explorer-ecommerce-api.herokuapp.com/
 
 7. To test the code run the jest command
 ```
@@ -105,5 +105,5 @@ Here are some of the pictures of the ecommerce API
 ## License 
 This project is licensed under the MIT License
 
-## Acknowedgements
+## Acknowledgements
 * Hats off to all the technologies I used and all the artciles I read.
