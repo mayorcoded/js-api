@@ -18,7 +18,7 @@ yarn
 ```
 yarn start
 ```
-5. You can test the endpoints by checking out this documentation: ???
+5. You can test the endpoints by checking out this documentation: https://documenter.getpostman.com/view/3567325/S1Zw8AzK?version=latest
 
 6. Checkout the live api here: ??
 
