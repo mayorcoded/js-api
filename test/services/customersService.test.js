@@ -10,13 +10,13 @@ const supertest = require('supertest');
 const loaders = require('../../src/loaders');
 const config = require('../../src/config');
 loaders(app);
-
+K
 describe('customer service', () => {
     let server;
     let request;
     let apiAccessToken;
     const chance = new Chance();
-    const email = chance.email({domain: "test.com"}); 
+    const email = chance.email({domain: "test.com"});
     const name = chance.name();
     const password = "123ABC";
     const facebookAccessToken = config.facebook.access_token
@@ -26,36 +26,36 @@ describe('customer service', () => {
         server.listen(done);
         request = supertest(server);
     });
-    
+
     afterAll((done) => {
         server.close(done);
     });
 
     describe('register customer', () => {
-    
+
         it('should register a new customer', async () => {
             const customer = {
                 email: email,
                 name: name,
                 password: password
             }
-    
-            const response = await request.post('/api/customers').send(customer).set('Accept', 'application/json')    
+
+            const response = await request.post('/api/customers').send(customer).set('Accept', 'application/json')
             expect(response.status).to.equal(200);
             expect(response.body.customer).to.exist
             expect(response.body.customer.schema).to.exist
             expect(response.body.accessToken).to.exist
             expect(response.body.expires_in).to.exist
         });
-    
+
         it('should not register a customer with an already existing email', async () => {
             const customer = {
                 email: email,
                 name: name,
                 password: password
             }
-    
-            const response = await request.post('/api/customers').send(customer).set('Accept', 'application/json')    
+
+            const response = await request.post('/api/customers').send(customer).set('Accept', 'application/json')
             expect(response.status).to.equal(400);
         });
 
@@ -65,7 +65,7 @@ describe('customer service', () => {
                 name: name,
             }
 
-            const response = await request.post('/api/customers').send(customer).set('Accept', 'application/json') 
+            const response = await request.post('/api/customers').send(customer).set('Accept', 'application/json')
             expect(response.status).to.equal(422);
             expect(response.body.error).to.not.be.null;
             expect(response.body.error.message).to.equal('unable to register customer');
@@ -78,7 +78,7 @@ describe('customer service', () => {
                 password: password
             }
 
-            const response = await request.post('/api/customers').send(customer).set('Accept', 'application/json') 
+            const response = await request.post('/api/customers').send(customer).set('Accept', 'application/json')
             expect(response.status).to.equal(422);
             expect(response.body.error).to.not.be.null;
             expect(response.body.error.message).to.equal('unable to register customer');
@@ -91,7 +91,7 @@ describe('customer service', () => {
                 password: password
             }
 
-            const response = await request.post('/api/customers').send(customer).set('Accept', 'application/json') 
+            const response = await request.post('/api/customers').send(customer).set('Accept', 'application/json')
             expect(response.status).to.equal(422);
             expect(response.body.error).to.not.be.null;
             expect(response.body.error.message).to.equal('unable to register customer');
@@ -100,10 +100,10 @@ describe('customer service', () => {
 
         it('should not register a customer with empty request body', async () => {
             const customer = {
-               
+
             }
 
-            const response = await request.post('/api/customers').send(customer).set('Accept', 'application/json') 
+            const response = await request.post('/api/customers').send(customer).set('Accept', 'application/json')
             expect(response.status).to.equal(422);
             expect(response.body.error).to.not.be.null;
             expect(response.body.error.message).to.equal('unable to register customer');
@@ -120,7 +120,7 @@ describe('customer service', () => {
                 email: email,
                 password: password
             }
-            
+
             const response = await request.post('/api/customers/login').send(customer).set('Accept', 'application/json');
             expect(response.status).to.equal(200);
             expect(response.body.customer).to.not.be.null;
@@ -136,7 +136,7 @@ describe('customer service', () => {
                 email: 'yada@email.com',
                 password: password
             }
-            
+
             const response = await request.post('/api/customers/login').send(customer).set('Accept', 'application/json');
             expect(response.status).to.equal(400);
             expect(response.body.error.message).to.equal('invalid customer credentials');
@@ -147,7 +147,7 @@ describe('customer service', () => {
             const customer = {
                 password: password
             }
-            
+
             const response = await request.post('/api/customers/login').send(customer).set('Accept', 'application/json');
             expect(response.status).to.equal(422);
             expect(response.body.error.message).to.equal('unable to log in customer');
@@ -159,7 +159,7 @@ describe('customer service', () => {
             const customer = {
                 email: email
             }
-            
+
             const response = await request.post('/api/customers/login').send(customer).set('Accept', 'application/json');
             expect(response.status).to.equal(422);
             expect(response.body.error.message).to.equal('unable to log in customer');
@@ -169,9 +169,9 @@ describe('customer service', () => {
 
         it('should not login customer with missing request body', async () => {
             const customer = {
-               
+
             }
-            
+
             const response = await request.post('/api/customers/login').send(customer).set('Accept', 'application/json');
             expect(response.status).to.equal(422);
             expect(response.body.error.message).to.equal('unable to log in customer');
@@ -179,6 +179,8 @@ describe('customer service', () => {
         })
 
         it('should login customer via facebook', async () => {
+            jest.setTimeout(30000);
+
             const accessToken = {
                 access_token: facebookAccessToken
             }
@@ -193,7 +195,7 @@ describe('customer service', () => {
 
         it('should not login customer with missing access_token via facebook', async () => {
             const accessToken = {
-                
+
             }
 
             const response = await request.post('/api/customers/facebook').send(accessToken).set('Accept', 'application/json');
@@ -237,7 +239,7 @@ describe('customer service', () => {
                 name: 'some updated name'
             }
 
-            const response = await  request.put('/api/customer').send(customerUpdate).set('USER-KEY', apiAccessToken).set('Accept', 'application/json');            
+            const response = await  request.put('/api/customer').send(customerUpdate).set('USER-KEY', apiAccessToken).set('Accept', 'application/json');
             expect(response.status).to.equal(200);
             expect(response.body).to.not.be.empty;
         })
