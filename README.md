@@ -6,7 +6,7 @@ Standard scalable E-commerce API built with Node.js. Users can search items, add
 
 1. Clone this repository into your local machine:
 ```
-git clone https://github.com/SirPhemmiey/ecommerce-api.git
+git clone https://github.com/mayorcoded/js-api.git
 ```
 2. Install dependencies by running
 ```
