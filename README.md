@@ -29,7 +29,7 @@ jest
 
 
 # System Architecture  🏢
-![Overview of Ecommerce Architecture](https://github.com/mayorcoded/ecommerce-api/blob/master/architecture.jpg)
+![Overview of Ecommerce Architecture](https://github.com/mayorcoded/js-api/blob/master/system_design.jpg)
 
 The system design is rather straighforward from the architecture diagram above. API reuqests made from various clients hits the Express controller. A middleware first checks if the same request has been cached and returns the response from the cache. However, if the request has not been cached or cleared from the cache, the controller calls the right service to handle the request and returns the result back to the controller which then sends a response to the clients. In some cases, a service may fire an event which would kick off a background job. These jobs are added to a job queue and a worker picks each job from the queue and executes them. When a worker is done with a jobs, an event is fired which triggers the right service for corresponding action. Logging is a cross-cutting concern in the application and it is done appropriately. 
 
