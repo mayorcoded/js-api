@@ -1,4 +1,4 @@
-# Ecommerce API  🛍 🛒 
+# Ecommerce API  🛍  
 
 Standard scalable E-commerce API built with Node.js. Users can search items, add items to their shopping cart, create orders, and checkout successfully.
 
