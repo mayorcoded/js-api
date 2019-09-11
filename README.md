@@ -106,4 +106,5 @@ Here are some of the pictures of the ecommerce API
 This project is licensed under the MIT License
 
 ## Acknowledgements
-* Hats off to all the technologies I used and all the ![articles](https://softwareontheroad.com/ideal-nodejs-project-structure/) I read.
+* Hats off to all the technologies I used and all the articles I read.
+ - https://softwareontheroad.com/ideal-nodejs-project-structure/
